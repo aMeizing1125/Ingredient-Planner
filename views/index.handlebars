@@ -4,3 +4,19 @@
 <h1>Welcome to My Awesome App</h1>
 <div id="firebaseui-auth-container"></div>
 <div id="loader">Loading...</div>
+
+{{!-- probably need to move this at some point, but wanted to 
+code it out.  --}}
+<div id="loginDiv">
+  <h3>Web Login</h3>
+  <input id="emailInput" type="email" placeholder="email@email.com"  required>
+  <input id="passwordInput" type="password" placeholder="password" required>
+  <button id="submit" type="submit" onclick="login()" >Submit</button>
+</div>
+
+{{!-- logging out area should be display hidden until logged in --}}
+ <div class="logoutDiv">
+  <h3>Welcome Chef!</h3>
+  <p id="logoutP" >Welcome to Ingredients Planner's </p>
+  <button id="logout" type="button" onclick="logout()">Logout</button>
+</div>

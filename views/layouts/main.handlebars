@@ -45,5 +45,19 @@
 </div>
 
 <script src="assets/javascript/logic.js"></script>
+{{!-- firebase --}}
+<script src="https://www.gstatic.com/firebasejs/5.11.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCEaSRawNZKU_TSSbQCjQihj7rAm3qnFU4",
+    authDomain: "ingredients-planner.firebaseapp.com",
+    databaseURL: "https://ingredients-planner.firebaseio.com",
+    projectId: "ingredients-planner",
+    storageBucket: "ingredients-planner.appspot.com",
+    messagingSenderId: "1000035841774"
+  };
+  firebase.initializeApp(config);
+</script>
 </body>
 </html>
