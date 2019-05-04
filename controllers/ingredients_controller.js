@@ -16,4 +16,11 @@ router.get("/", function(req, res) {
   // });
 });
 
+router.get("/test", function(req, res) {
+    res.render("./test", hbsObject);
+});
+
+
+
+
 module.exports = router;
