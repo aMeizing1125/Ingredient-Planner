@@ -1,0 +1,35 @@
+<form>
+    <input type="text" id="testInput">
+    <button type="submit" id="testButton">Submit word</button>
+
+</form>
+
+<script>
+    $("#testButton").on("click", function(event){
+        event.preventDefault();
+
+        inputVal = $("#testInput").val();
+
+        postToApi(inputVal);
+
+        $("#testInput").val("");
+    })
+
+    function postToApi(placeholder){
+        inputObject = {};
+
+        inputObject.item = placeholder;
+
+        console.log(inputObject);
+
+        $.post("/postForm", inputObject, function(data){
+            if(data){
+                console.log("data has been added");
+            }
+            else{
+                console.log("data was not posted");
+            }
+        })
+    }
+
+</script>

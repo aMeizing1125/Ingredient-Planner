@@ -16,6 +16,14 @@ router.get("/form", function(req, res) {
     res.render("form");
 });
 
+router.post("/postForm", function(req, res){
+    res.redirect("/form");
+})
+
+router.get("/test", function(req, res){
+  res.render("test");
+})
+
 router.post("/submit", function(req, res){
   allIngredients = req.body;
 
@@ -23,12 +31,11 @@ router.post("/submit", function(req, res){
 
   var allRecipes = getRecipes(allIngredients.allIngredients, function(response){
     // console.log(response);
-    
+
     return response;
   });
 
   console.log(allRecipes);
-
 })
 
 module.exports = router;

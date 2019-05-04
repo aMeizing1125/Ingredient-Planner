@@ -57,3 +57,7 @@ function callApi(ing){
         }
     })
 }
+
+$("#testing").on("click", function(){
+    console.log("testing views");
+});
