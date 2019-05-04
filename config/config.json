@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "ingredients_DB",
+    "database": "exampledb",
     "host": "localhost",
     "dialect": "mysql"
   },
