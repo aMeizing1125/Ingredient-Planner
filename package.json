@@ -20,6 +20,8 @@
   "homepage": "https://github.com/aMeizing1125/Ingredient-Planner#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "express-handlebars": "^3.0.2"
+    "express-handlebars": "^3.0.2",
+    "firebase": "^5.11.1",
+    "firebaseui": "^3.6.0"
   }
 }
