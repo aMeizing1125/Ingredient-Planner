@@ -1,6 +1,7 @@
 body{
 	margin: 0px;
-	background-color: #dddddd;
+	background-image: url("../img/background.jpg");
+	background-size: cover;
 	font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -14,10 +15,11 @@ body{
 	overflow: hidden;
 	grid-column-start: blank_left;
 	grid-column-end: span 3;
-	background-color: darkred;
+	background-color: rgb(187, 20, 20);
 	display: grid;
 	grid-template-columns: [nav_blank_left] 16% [nav_center_name] 300px [nav_center_blank] auto [nav_center_content] 400px [nav_blank_right] 16%;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	border-bottom: gray 2px;
 }
 
 .nav_name{

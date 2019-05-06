@@ -1,7 +1,7 @@
 {
   "name": "Ingredient-Planner",
   "version": "1.0.0",
-  "description": "",
+  "description": "what can I make with what I have?",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/aMeizing1125/Ingredient-Planner#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "express-handlebars": "^3.0.2"
+    "express-handlebars": "^3.0.2",
+    "unirest": "^0.6.0"
   }
 }
