@@ -22,6 +22,9 @@ var getRecipes = function(ingredients, callback){
     .end(function (result) {
         callback(result.body);
     });
+    console.log("Mei testing" + getRecipes);
 }
+
+
 
 module.exports = getRecipes;

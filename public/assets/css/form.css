@@ -25,6 +25,14 @@
     flex-direction: row;
 }
 
+/* Maintains image aspect ratio */
+.recipeContainer img {
+    max-width: 312px;
+    max-height: 231px;
+    width: auto;
+    height: auto;
+}
+
 .recipeDetails{
     width: 100%;
     text-align: center;
