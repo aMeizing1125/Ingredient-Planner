@@ -15,6 +15,7 @@ firebase.initializeApp(config);
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
+
 var uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function (authResult, redirectUrl) {
@@ -23,7 +24,11 @@ var uiConfig = {
       // or whether we leave that to developer to handle.
       console.log(authResult);
 
-      updateUi(authResult.user);
+
+      updateUi.createDropDown(authResult.user);
+      //Reload page
+      location.reload();
+
       return false;
     },
     uiShown: function () {
@@ -46,20 +51,73 @@ var uiConfig = {
   // Other config options...
 }
 
-function updateUi(user){
-  $("#signIn").text(user.displayName);
 
-  document.getElementById('loader').style.display = 'none';
-  document.getElementById('firebaseui-auth-container').style.display = 'none';
+
+var updateUi = {
+  removeSignin: function(){
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('firebaseui-auth-container').style.display = 'none';
+
+  },
+  //Creates a dropdown menu for logged in user
+  createDropDown: function(thisUser){
+    $(".about").empty();
+
+    //Dropdown menu
+    newDropDown = $("<select>").addClass("userDropDown")
+    .attr("onchange", "updateUi.dropDownOptions(this.value)")
+
+    //This will let us set the default option to the user's name
+    userName = $("<option>").text(thisUser.displayName)
+    .attr("disabled", "true")
+    .attr("selected", "true")
+    .attr("hidden", "true")
+    .addClass("userName");
+
+    signOut = $("<option>").text("Sign Out")
+    .attr("id", "signOut")
+    .attr("value", "signOut");
+    settings = $("<option>").text("Settings")
+    .attr("value", "settings");
+
+    newDropDown.append(userName, signOut, settings);
+
+    $(".about").append(newDropDown);
+  },
+  dropDownOptions(value){
+    console.log(value);
+    if(value === "signOut"){
+      //Clears indexedDb
+      firebase.auth().signOut().then(function() {
+        console.log('Signed Out');
+      }, function(error) {
+        console.error('Sign Out Error', error);
+      });
+
+      //Clears local storage
+      localStorage.clear();
+    }
+
+    //Reload page
+    location.reload();
+
+  }
+
 }
 
 ui.start('#firebaseui-auth-container', uiConfig);
 
 var thisUser = JSON.parse(localStorage.getItem("firebaseui::rememberedAccounts"))[0];
 
-  if(thisUser){
-    updateUi(thisUser);
-  }
+
+if(thisUser){
+  //Remove sign in option
+  updateUi.removeSignin();
+
+  //Create dropdown menu for user
+  updateUi.createDropDown(thisUser);
+}
+
 
 // var thisUser = firebase.auth().currentUser;
 

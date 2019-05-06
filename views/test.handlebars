@@ -1,0 +1,36 @@
+<form>
+    <input type="text" id="testInput">
+    <button type="submit" id="testButton">Submit word</button>
+
+</form>
+
+<div id="emptyDiv"></div>
+
+<script>
+    $("#testButton").on("click", function(event){
+        event.preventDefault();
+
+        inputVal = $("#testInput").val();
+
+        postToApi(inputVal);
+
+        $("#testInput").val("");
+    })
+
+    function postToApi(placeholder){
+        inputObject = {};
+
+        inputObject.whatever = placeholder;
+
+        console.log(inputObject);
+
+        $.post("/jonathan", inputObject, function(data){
+            if(data){
+                newDiv = $("<div>").text(data.whatever);
+
+                $("#emptyDiv").append(newDiv);
+            }
+        })
+    }
+
+</script>

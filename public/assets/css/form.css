@@ -1,0 +1,51 @@
+#search{
+    width: 100%;
+    height: 40px;
+    margin-bottom: 40px;
+}
+
+.ingredient{
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+}
+
+.ingredient > * {
+    padding: 10px 15px;
+}
+
+.recipe{
+    width: 100%;
+    border: 2px solid blue;
+    margin: 20px 0px;
+}
+
+.recipeContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+/* Maintains image aspect ratio */
+.recipeContainer img {
+    max-width: 312px;
+    max-height: 231px;
+    width: auto;
+    height: auto;
+}
+
+.recipeDetails{
+    width: 100%;
+    text-align: center;
+}
+
+.recipeTitle{
+    text-align: center;
+    font-size: 35px;
+}
+
+.expand{
+    height: 800px;
+    display: grid;
+
+    grid-template-rows: [title] 40px [content] auto [image] auto;
+}
