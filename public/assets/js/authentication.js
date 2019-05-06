@@ -24,9 +24,11 @@ var uiConfig = {
       // or whether we leave that to developer to handle.
       console.log(authResult);
 
+
       updateUi.createDropDown(authResult.user);
       //Reload page
       location.reload();
+
       return false;
     },
     uiShown: function () {
@@ -48,6 +50,7 @@ var uiConfig = {
   ],
   // Other config options...
 }
+
 
 
 var updateUi = {
@@ -99,11 +102,13 @@ var updateUi = {
     location.reload();
 
   }
+
 }
 
 ui.start('#firebaseui-auth-container', uiConfig);
 
 var thisUser = JSON.parse(localStorage.getItem("firebaseui::rememberedAccounts"))[0];
+
 
 if(thisUser){
   //Remove sign in option
@@ -112,6 +117,7 @@ if(thisUser){
   //Create dropdown menu for user
   updateUi.createDropDown(thisUser);
 }
+
 
 // var thisUser = firebase.auth().currentUser;
 

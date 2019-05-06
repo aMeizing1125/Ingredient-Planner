@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <title>Responsive Portfolio</title>
     {{!-- Local CSS --}}
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -17,33 +19,38 @@
 		{{!-- Firebase CSS--}}
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />  
 
+
 </head>
+
 <body>
 
-<div class="layout">
+  <div class="layout">
 
-<div class="the_nav">
-    <div class="nav_name">
-      <p>To Do List<p>
+    <div class="the_nav">
+      <div class="nav_name">
+        <p>To Do List<p>
+      </div>
+
+      <div class="nav_items">
+        <div class="contact">
+          <a href="contact.html">Dashboard</a>
+        </div>
+        <div class="portfolio">
+          <a href="portfolio.html">Settings</a>
+        </div>
+        <div class="about">
+          <a href="index.html" id="signIn">Sign In</a>
+        </div>
+
+      </div>
     </div>
-    <div class="nav_items">
-      <div class="contact">
-        <a href="contact.html">Dashboard</a>
-      </div>
-      <div class="portfolio">
-        <a href="portfolio.html">Settings</a>
-      </div>
-      <div class="about">
-        <a href="index.html" id="signIn">Sign In</a>
-      </div>
+
+    <div class="content">
+      {{{ body }}}
     </div>
-</div>
 
-<div class="content">   
-    {{{ body }}}
-</div>
+  </div>
 
-</div>
 
 
 {{!-- firebase --}}
@@ -54,4 +61,5 @@
 <script src="assets/javascript/logic.js"></script>
 
 </body>
+
 </html>

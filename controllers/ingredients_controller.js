@@ -26,6 +26,7 @@ router.post("/jonathan", function(req, res){
     res.json(thisItem);    
 });
 
+
 router.get("/myRecipes", function(req, res){
   //If database contains UID
   
