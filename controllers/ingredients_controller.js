@@ -9,15 +9,26 @@ var router = express.Router();
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
-    res.render("index", hbsObject);
+    res.render("index");
 });
 
 router.get("/form", function(req, res) {
     res.render("form");
 });
 
-router.post("/postForm", function(req, res){
-    res.redirect("/form");
+router.post("/jonathan", function(req, res){
+    var thisItem = req.body;
+
+    console.log(thisItem);
+
+    thisItem.whatever += "s";
+
+    res.json(thisItem);    
+});
+
+router.get("/myRecipes", function(req, res){
+  //If database contains UID
+  
 })
 
 router.get("/test", function(req, res){
@@ -29,11 +40,12 @@ router.post("/submit", function(req, res){
 
   var allRecipes;
 
-  var allRecipes = getRecipes(allIngredients.allIngredients, function(response){
-    // console.log(response);
-
-    return response;
+  getRecipes(allIngredients.allIngredients, function(response){
+    console.log(response);
+    
+    res.json(response);
   });
+
 
   console.log(allRecipes);
 })

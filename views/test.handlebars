@@ -4,6 +4,8 @@
 
 </form>
 
+<div id="emptyDiv"></div>
+
 <script>
     $("#testButton").on("click", function(event){
         event.preventDefault();
@@ -18,16 +20,15 @@
     function postToApi(placeholder){
         inputObject = {};
 
-        inputObject.item = placeholder;
+        inputObject.whatever = placeholder;
 
         console.log(inputObject);
 
-        $.post("/postForm", inputObject, function(data){
+        $.post("/jonathan", inputObject, function(data){
             if(data){
-                console.log("data has been added");
-            }
-            else{
-                console.log("data was not posted");
+                newDiv = $("<div>").text(data.whatever);
+
+                $("#emptyDiv").append(newDiv);
             }
         })
     }

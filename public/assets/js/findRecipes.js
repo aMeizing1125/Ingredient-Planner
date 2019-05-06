@@ -1,7 +1,7 @@
 var unirest = require("unirest");
 
 function createUrl(arr){
-    queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ignorePantry=false&ingredients=";
+    queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=20&ranking=1&ignorePantry=false&ingredients=";
 
     for(i = 0; i < arr.length; i++){
         thisIngredient = arr[i];
