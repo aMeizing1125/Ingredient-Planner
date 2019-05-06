@@ -33,7 +33,7 @@
           <a href="portfolio.html">Settings</a>
         </div>
         <div class="about">
-          <a href="index.html">Sign In</a>
+          <a href="index.html" id="signIn">Sign In</a>
         </div>
       </div>
     </div>
@@ -48,22 +48,7 @@
   {{!-- firebase --}}
   <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase.js"></script>
   <script src="assets/js/authentication.js"></script>
-
-  <script>
-    
-    'callbacks': {
-      'signInSuccess': function(currentUser, credential, redirectUrl) {
-        var user = currentUser;
-        var authenticated_URL = redirectUrl;
-        if (user != null) {
-          return true;
-          authenticated_URL = 'https://google.com';
-          authenticated_URL = '<my-website's - protected - page >;
-        }
-        else { return false; }
-      }
-    }
-  </script>
+  
 </body>
 
 </html>

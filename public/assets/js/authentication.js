@@ -22,12 +22,15 @@ var uiConfig = {
       // Return type determines whether we continue the redirect automatically
       // or whether we leave that to developer to handle.
       console.log(authResult);
+
+      updateUi(authResult.user);
       return false;
     },
     uiShown: function () {
       // The widget is rendered.
       // Hide the loader.
       document.getElementById('loader').style.display = 'none';
+
     }
   },
   signInFlow: 'popup',
@@ -43,21 +46,41 @@ var uiConfig = {
   // Other config options...
 }
 
+function updateUi(user){
+  $("#signIn").text(user.displayName);
+
+  document.getElementById('loader').style.display = 'none';
+  document.getElementById('firebaseui-auth-container').style.display = 'none';
+}
 
 ui.start('#firebaseui-auth-container', uiConfig);
 
-googleSignIn = () => {
-  base_provider = new firebase.auth.GoogleAuthProvider()
-  firebase.auth().signInWithPopup(base_provider)
-    .then(function (gmailResult) {
-      console.log("Successful Google Account Link");
-      console.log(gmailResult);
+var thisUser = JSON.parse(localStorage.getItem("firebaseui::rememberedAccounts"))[0];
+
+  if(thisUser){
+    updateUi(thisUser);
+  }
+
+// var thisUser = firebase.auth().currentUser;
+
+// if(thisUser){
+//   updateUi(thisUser);
+// }
+
+
+
+// googleSignIn = () => {
+//   base_provider = new firebase.auth.GoogleAuthProvider()
+//   firebase.auth().signInWithPopup(base_provider)
+//     .then(function (gmailResult) {
+//       console.log("Successful Google Account Link");
+//       console.log(gmailResult);
       
-    }).catch(function (err) {
-      console.log(err);
-      console.log("Failed to link Google Account or Login");
-    })
-}
+//     }).catch(function (err) {
+//       console.log(err);
+//       console.log("Failed to link Google Account or Login");
+//     })
+// }
 
 
 
