@@ -5,7 +5,14 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
-    ingredient: {
+    user: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 30]
+      }
+    },
+    recipe: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
