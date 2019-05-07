@@ -1,5 +1,10 @@
 console.log("inside form.js");
 
+//Global functions--------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------------
+
 $("#submitButton").on("click", function(event){
     event.preventDefault();
 
@@ -63,7 +68,7 @@ function appendResults(allRecipes){
     $("#results").empty();
 
     allRecipes.forEach(function(thisRecipe){
-        console.log(thisRecipe.title);
+        console.log(thisRecipe);
 
         recipeDiv = $("<div>").addClass("recipe");
 
@@ -78,8 +83,13 @@ function appendResults(allRecipes){
         details = $("<div>").addClass("recipeDetails")
         
         moreDetails = $("<button>").addClass("moreDetails").text("More Details");
+
+        saveRecipe = $("<button>")
+        .addClass("saveRecipe")
+        .text("Save Recipe")
+        .attr("recipe-id", thisRecipe.id);
         
-        details.append(moreDetails);
+        details.append(moreDetails, saveRecipe);
 
         recipeContainer.append(image, details);
         recipeDiv.append(title, recipeContainer);
@@ -88,6 +98,8 @@ function appendResults(allRecipes){
     })
 
     allowMoreDetails();
+
+    saveRecipes();
 }
 
 function allowMoreDetails(){
@@ -97,5 +109,47 @@ function allowMoreDetails(){
         thisButton = $(this).parent().parent().parent();
     
         thisButton.toggleClass("expand");
+    })
+}
+
+function saveRecipes(){
+    $(".saveRecipe").on("click", function(){
+        var recipeId;
+
+        thisButton = $(this);
+        recipeId = thisButton.attr("recipe-id");
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User logged in already or has just logged in.
+                uid = user.uid
+
+                savedRecipe = {
+                    uid: uid,
+                    recipeId: recipeId
+                }
+
+                console.log(savedRecipe);
+
+                $.post("/saveRecipe", savedRecipe, function(data){
+                    if(data){
+                        console.log("recipe has been saved");
+                    }
+                    else{
+                        console.log("error");
+                    }
+                })
+            } 
+            
+            else {
+                console.log("user is not logged in");
+            }
+        });     
+        
+
+
+
+        console.log(uid);
+
     })
 }
