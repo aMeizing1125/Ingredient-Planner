@@ -23,9 +23,10 @@ app.set("view engine", "handlebars");
 
 
 // Import routes and give the server access to them.
-var routes = require("./controllers/ingredients_controller.js");
+// var routes = require("./controllers/ingredients_controller.js");
 
-app.use(routes);
+require("./routes/html-routes")(app);
+require("./routes/api-routes")(app);
 
 // Start our server so that it can begin listening to client requests.
 app.listen(PORT, function() {
