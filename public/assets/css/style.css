@@ -5,10 +5,17 @@ body{
 	font-family: 'Roboto Condensed', sans-serif;
 }
 
-.layout{
+/* .layout{
 	display: grid;
 	grid-template-rows: [nav_bar] 60px [page] auto;
 	grid-template-columns: [blank_left] 16% [center_content] auto [blank_right] 16%;
+} */
+
+h1 {
+	font-family: 'Lobster', cursive;
+	color: gold;
+	font-size: 55px;
+	text-align: center;
 }
 
 .the_nav{
@@ -20,16 +27,50 @@ body{
 	grid-template-columns: [nav_blank_left] 16% [nav_center_name] 300px [nav_center_blank] auto [nav_center_content] 400px [nav_blank_right] 16%;
 	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 	border-bottom: gray 2px;
+	padding-bottom: 15px;
 }
 
 .nav_name{
-	grid-column-start: nav_center_name;
-	grid-column-end: span 1;
-	background-color: white;
-	color: black;
+
+	display: block;
+	float: top;
+	top: 0;
+	position: absolute;
 	text-align: center;
 	font-size: 22px;
 	margin-top: 0px;
+	font-family: 'Lobster', cursive;
+	outline-style: solid;
+	outline-color: white;
+	margin-left: 15%;
+	margin-top: 5px;
+}
+
+.nav_name:hover {
+	background-color: white;
+	outline-style: solid;
+	outline-color: gold;
+}
+
+#welcome {
+	font-size: 75px;
+	padding: 0;
+	color: gold;
+	font-family: 'Lobster', cursive;
+	position: relative;
+	margin: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-top: 5px;
+
+}
+
+a { 
+	text-decoration: none;
+}
+
+.nav_name:hover {
+	background: white;
 }
 
 .nav_items{
@@ -43,11 +84,12 @@ body{
 
 .nav_items a{
 	color: white;
-	font-size: 15px;
+	font-size: 20px;
 	text-decoration: none;
+	font-display: 'Barlow Semi Condensed', sans-serif;
 }
 
-.contact{
+/* .contact{
 	text-decoration: none;
 	grid-column-start: contact;
 }
@@ -58,42 +100,49 @@ body{
 
 .about{
 	grid-column-start: about;
-}
+} */
 
-.nav_items ul{
+/* .nav_items ul{
 	list-style-type: none;
 	display: inline-block;
-}
+} */
 
-.nav_items li{
+/* .nav_items li{
 	float: left;
 	padding: 0px 20px;
-}
+} */
 
-.content_title{
+/* .content_title{
 	color: #4aaaa5;
-}
+} */
 
 
 .content{
+
 	background-color: white;
 	grid-row-start: page;
 	grid-column-start: center_content;
 	padding: 40px;
-	margin-top: 60px;
+	margin: auto;
+	margin-top: 100px;
 	margin-bottom: 40px;
 	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	width: 80%;
 }
 
 .userDropDown{
-	background-color: #003881;
+	background-color: rgb(187, 20, 20);
 	color: white;
 	border: none;
-	font-size: 15px;
-	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 20px;
+	font-family: 'IBM Plex Sans', sans-serif;
 }
 
 @media screen and (max-width: 1050px) {
+	#welcome{
+		width: 100%;
+		position: fixed;
+	}
 	.layout{
 		display: grid;
 		grid-template-rows: [nav_bar] 100px [page] auto;
