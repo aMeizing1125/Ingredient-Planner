@@ -3,13 +3,15 @@
 
 <head>
 
-    <title>Responsive Portfolio</title>
+    <title>In the Fridge</title>
     {{!-- Local CSS --}}
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     {{!-- Form CSS --}}
     <link rel="stylesheet" href="assets/css/form.css">
+    {{!-- Tab Image --}}
+<link rel="shortcut icon" type="image/png" href="assets/img/dish.png"/>
     {{!-- Google Fonts --}}
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Courgette|IBM+Plex+Sans|Lobster|Pacifico|Roboto+Condensed" rel="stylesheet">
 		{{!-- jQuery --}}
 		<script src="https://code.jquery.com/jquery.js"></script>
 		{{!-- local Javascript --}}
@@ -25,20 +27,19 @@
 
 <body>
 
-  <div class="layout">
+  <div class="layout parent">
 
     <div class="the_nav">
-      <div class="nav_name">
-        <p>Welcome<p>
+      <div class="nav_name" >
+        <p id="welcome"><a id="welcome" href="/">Welcome</a><p>
       </div>
 
       <div class="nav_items">
         <div class="contact">
-          <a href="contact.html">Dashboard</a>
+          <a href="/">Homepage</a>
         </div>
         <div class="portfolio">
-
-          <a href="portfolio.html">Settings</a>
+          <a href="/form">Search Recipes</a>
         </div>
         <div class="about">
           <a href="index.html" id="signIn">Sign In</a>
@@ -47,11 +48,17 @@
       </div>
     </div>
 
-    <div class="content">
+    {{!-- <div class="content">
       {{{ body }}}
-    </div>
+    </div> --}}
 
   </div>
+
+
+
+    <div class="content" style="justify-content: center">
+      {{{ body }}}
+    </div>
 
 
 
@@ -61,8 +68,7 @@
 <script src="assets/js/authentication.js"></script>
 {{!-- logic.js --}}
 <script src="assets/javascript/logic.js"></script>
-{{!-- doesUserExist.js --}}
-<script src="assets/js/doesUserExist.js"></script>
+
 </body>
 
 </html>
