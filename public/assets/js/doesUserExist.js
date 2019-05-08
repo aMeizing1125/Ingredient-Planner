@@ -1,5 +1,3 @@
-var thisUser = JSON.parse(localStorage.getItem("firebaseui::rememberedAccounts"))[0];
-
 var updateUi = {
     //Creates a dropdown menu for logged in user
     createDropDown: function (thisUser) {
@@ -47,10 +45,18 @@ var updateUi = {
 
 }
 
-if (thisUser) {
-    //Remove sign in option
-    // updateUi.removeSignin();
 
-    //Create dropdown menu for user
-    updateUi.createDropDown(thisUser);
+function validateUser(){
+    var userAccount = JSON.parse(localStorage.getItem("firebaseui::rememberedAccounts"));
+
+    if(userAccount){
+      //Stores the object of the current user
+      thisUser = userAccount[0];
+  
+      //Create dropdown menu for user
+      updateUi.createDropDown(thisUser);
+    }
+
 }
+
+validateUser();

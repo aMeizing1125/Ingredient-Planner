@@ -25,7 +25,7 @@ var uiConfig = {
       console.log(authResult);
 
 
-      updateUi.createDropDown(authResult.user);
+      // updateUi.createDropDown(authResult.user);
       //Reload page
       location.reload();
 
@@ -84,7 +84,10 @@ var updateUi = {
   },
   dropDownOptions(value){
     console.log(value);
+
+    //If the user attempts to sign out
     if(value === "signOut"){
+      
       //Clears indexedDb
       firebase.auth().signOut().then(function() {
         console.log('Signed Out');
@@ -97,23 +100,29 @@ var updateUi = {
     }
 
     //Reload page
-    location.reload();
+
 
   }
 }
 
 ui.start('#firebaseui-auth-container', uiConfig);
 
-var thisUser = JSON.parse(localStorage.getItem("firebaseui::rememberedAccounts"))[0];
+function validateUser(){
+  var userAccount = JSON.parse(localStorage.getItem("firebaseui::rememberedAccounts"));
 
+  if(userAccount){
+    //Stores the object of the current user
+    thisUser = userAccount[0];
 
-if(thisUser){
-  //Remove sign in option
-  updateUi.removeSignin();
+    //Remove sign in option
+    updateUi.removeSignin();
 
-  //Create dropdown menu for user
-  updateUi.createDropDown(thisUser);
+    //Create dropdown menu for user
+    updateUi.createDropDown(thisUser);
+  }
 }
+
+validateUser();
 
 
 // var thisUser = firebase.auth().currentUser;
