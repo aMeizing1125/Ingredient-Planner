@@ -51,8 +51,6 @@ var uiConfig = {
   // Other config options...
 }
 
-
-
 var updateUi = {
   removeSignin: function(){
     document.getElementById('loader').style.display = 'none';
@@ -102,7 +100,6 @@ var updateUi = {
     location.reload();
 
   }
-
 }
 
 ui.start('#firebaseui-auth-container', uiConfig);

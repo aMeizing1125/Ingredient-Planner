@@ -124,6 +124,8 @@ function saveRecipes(){
                 // User logged in already or has just logged in.
                 uid = user.uid
 
+                console.log(uid);
+
                 savedRecipe = {
                     uid: uid,
                     recipeId: recipeId
