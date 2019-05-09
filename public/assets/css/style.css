@@ -3,7 +3,7 @@ body{
 	background-image: url("../img/background.jpg");
 	background-size: cover;
 	background-attachment: fixed;
-	font-family: 'Roboto Condensed', sans-serif;
+	font-family: 'IBM Plex Sans', sans-serif;
 }
 
 /* .layout{
@@ -19,13 +19,20 @@ h1 {
 	text-align: center;
 }
 
+.links {
+	margin: auto;
+	float: right;
+	margin-right: 5%;
+}
+
 .the_nav{
 	overflow: hidden;
-	grid-column-start: blank_left;
-	grid-column-end: span 3;
+	/* grid-column-start: blank_left;
+	grid-column-end: span 3; */
 	background-color: rgb(187, 20, 20);
-	display: grid;
-	grid-template-columns: [nav_blank_left] 16% [nav_center_name] 300px [nav_center_blank] auto [nav_center_content] 400px [nav_blank_right] 16%;
+	display: block;
+	/* display: grid;
+	grid-template-columns: [nav_blank_left] 16% [nav_center_name] 300px [nav_center_blank] auto [nav_center_content] 400px [nav_blank_right] 16%; */
 	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 	border-bottom: gray 2px;
 	padding-bottom: 15px;
@@ -39,18 +46,22 @@ h1 {
 	position: absolute;
 	text-align: center;
 	font-size: 22px;
-	margin-top: 0px;
 	font-family: 'Lobster', cursive;
 	outline-style: solid;
-	outline-color: white;
-	margin-left: 15%;
-	margin-top: 5px;
+	outline-color: gold;
+	margin-left: 7%;
+	margin-top: 15px;
+	background: white;
 }
 
 .nav_name:hover {
+	/* text-decoration-color: rgb(187, 20, 20);
 	background-color: white;
 	outline-style: solid;
-	outline-color: gold;
+	outline-color: gold; */
+	padding: 2px;
+	outline-width: 7px;
+
 }
 
 #welcome {
@@ -63,24 +74,29 @@ h1 {
 	padding-left: 15px;
 	padding-right: 15px;
 	margin-top: 5px;
-
 }
 
 a { 
 	text-decoration: none;
 }
 
+
+
 .nav_name:hover {
 	background: white;
 }
 
 .nav_items{
+	margin: auto;
 	text-align: center;
-	grid-column-start: nav_center_content;
+	display: flex;
+	/* grid-column-start: nav_center_content;
 	grid-column-end: span 1;
 	display: grid;
-	grid-template-columns: [contact] 33% [portfolio] 33% [about] 33%;
+	grid-template-columns: [contact] 33% [portfolio] 33% [about] 33%; */
 	padding-top: 20px;
+	float: right;
+	padding-right: 20px;
 }
 
 .nav_items a{
@@ -88,6 +104,10 @@ a {
 	font-size: 18px;
 	text-decoration: none;
 	font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.contact, .portfolio, .about {
+	padding-right: 20px;
 }
 
 /* .contact{
