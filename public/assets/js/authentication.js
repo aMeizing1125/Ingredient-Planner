@@ -49,68 +49,80 @@ var uiConfig = {
     // firebase.auth.GithubAuthProvider.PROVIDER_ID
   ],
   // Other config options...
-}
+};
 
 var updateUi = {
-  removeSignin: function(){
+  removeSignin: function () {
     document.getElementById('loader').style.display = 'none';
     document.getElementById('firebaseui-auth-container').style.display = 'none';
 
   },
   //Creates a dropdown menu for logged in user
-  createDropDown: function(thisUser){
+  createDropDown: function (thisUser) {
     $(".about").empty();
 
     //Dropdown menu
     newDropDown = $("<select>").addClass("userDropDown")
-    .attr("onchange", "updateUi.dropDownOptions(this.value)")
+      .attr("onchange", "updateUi.dropDownOptions(this.value)")
 
     //This will let us set the default option to the user's name
     userName = $("<option>").text(thisUser.displayName)
-    .attr("disabled", "true")
-    .attr("selected", "true")
-    .attr("hidden", "true")
-    .addClass("userName");
+      .attr("disabled", "true")
+      .attr("selected", "true")
+      .attr("hidden", "true")
+      .addClass("userName");
 
     signOut = $("<option>").text("Sign Out")
-    .attr("id", "signOut")
-    .attr("value", "signOut");
+      .attr("id", "signOut")
+      .attr("value", "signOut");
     settings = $("<option>").text("Settings")
-    .attr("value", "settings");
+      .attr("value", "settings");
 
     newDropDown.append(userName, signOut, settings);
 
     $(".about").append(newDropDown);
   },
-  dropDownOptions(value){
+  dropDownOptions(value) {
     console.log(value);
 
     //If the user attempts to sign out
-    if(value === "signOut"){
-      
+    if (value === "signOut") {
+
       //Clears indexedDb
-      firebase.auth().signOut().then(function() {
+      firebase.auth().signOut().then(function () {
         console.log('Signed Out');
-      }, function(error) {
+      }, function (error) {
         console.error('Sign Out Error', error);
       });
+      // $.ajax({
+      //   type: 'POST',
+      //   url: '../../views/index',
 
+      //   complete: function (data) {
+      //     // data = {'target' => '/redirect/to/route'}
+      //     if (getProperty(data, 'responseJSON.target', false)) {
+      //       // don't redirect to itself
+      //       // logout => /
+      //       if (window.location.pathname != getProperty(data, 'responseJSON.target', false)) {
+      //         window.location.replace(getProperty(data, 'responseJSON.target'));
+      //         console.log(data);
       //Clears local storage
       localStorage.clear();
     }
 
     //Reload page
-
+    // Simulate an HTTP redirect:
+    window.location.replace("/");
 
   }
-}
+};
 
 ui.start('#firebaseui-auth-container', uiConfig);
 
-function validateUser(){
+function validateUser() {
   var userAccount = JSON.parse(localStorage.getItem("firebaseui::rememberedAccounts"));
 
-  if(userAccount){
+  if (userAccount) {
     //Stores the object of the current user
     thisUser = userAccount[0];
 
@@ -139,7 +151,7 @@ validateUser();
 //     .then(function (gmailResult) {
 //       console.log("Successful Google Account Link");
 //       console.log(gmailResult);
-      
+
 //     }).catch(function (err) {
 //       console.log(err);
 //       console.log("Failed to link Google Account or Login");
@@ -179,15 +191,15 @@ validateUser();
 // }); //end of firebase.auth()
 
 // function login() {
-  // this is here to test the function only
-  // window.alert("login() working! ");
+// this is here to test the function only
+// window.alert("login() working! ");
 
-  //commented this out since only using Gmail right now
-  // var userEmail = document.getElementById('emailInput').value;
-  // var userPassword = document.getElementById('passwordInput').value;
+//commented this out since only using Gmail right now
+// var userEmail = document.getElementById('emailInput').value;
+// var userPassword = document.getElementById('passwordInput').value;
 
-  //testing if userEmail and userPassword is actually capturing. 
-  // window.alert(userEmail + " " + userPassword);
+//testing if userEmail and userPassword is actually capturing. 
+// window.alert(userEmail + " " + userPassword);
 
 //   firebase.auth().createUserWithEmailAndPassword(email, password)
 //   .catch(function(error) {
@@ -200,12 +212,12 @@ validateUser();
 // } //end of login()
 
 // function logout() {
-  // firebase.auth().signOut()
+// firebase.auth().signOut()
 
-  // tutorial deleted -commenting out is better
-  // .then(function() {
-  //   // Sign-out successful.
-  // }).catch(function(error) {
-  //   // An error happened.
-  // });
+// tutorial deleted -commenting out is better
+// .then(function() {
+//   // Sign-out successful.
+// }).catch(function(error) {
+//   // An error happened.
+// });
 // }

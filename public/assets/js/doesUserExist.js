@@ -38,24 +38,26 @@ var updateUi = {
             localStorage.clear();
         }
 
-        //Reload page
-        location.reload();
+        // Simulate an HTTP redirect:
+        window.location.replace("/");
 
     }
+
 
 }
 
 
-function validateUser(){
+function validateUser() {
     var userAccount = JSON.parse(localStorage.getItem("firebaseui::rememberedAccounts"));
 
-    if(userAccount){
-      //Stores the object of the current user
-      thisUser = userAccount[0];
-  
-      //Create dropdown menu for user
-      updateUi.createDropDown(thisUser);
+    if (userAccount) {
+        //Stores the object of the current user
+        thisUser = userAccount[0];
+
+        //Create dropdown menu for user
+        updateUi.createDropDown(thisUser);
     }
+
 
 }
 
