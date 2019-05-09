@@ -87,7 +87,7 @@ var updateUi = {
 
     //If the user attempts to sign out
     if(value === "signOut"){
-      
+
       //Clears indexedDb
       firebase.auth().signOut().then(function() {
         console.log('Signed Out');
@@ -119,6 +119,14 @@ function validateUser(){
 
     //Create dropdown menu for user
     updateUi.createDropDown(thisUser);
+  }
+
+  //If the user does not exist
+  else{
+    $("#signIn").on("click", function(){
+      $(".hide").toggleClass("hide");
+    })
+
   }
 }
 

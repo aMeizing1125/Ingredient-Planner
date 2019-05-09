@@ -3,26 +3,28 @@
 
 <head>
 
-    <title>In the Fridge</title>
-    {{!-- Local CSS --}}
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    {{!-- Form CSS --}}
-    <link rel="stylesheet" href="assets/css/form.css">
-    {{!-- Tab Image --}}
-<link rel="shortcut icon" type="image/png" href="assets/img/dish.png"/>
-    {{!-- Google Fonts --}}
-    <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Courgette|IBM+Plex+Sans|Lobster|Pacifico|Roboto+Condensed" rel="stylesheet">
-		{{!-- jQuery --}}
-		<script src="https://code.jquery.com/jquery.js"></script>
-		{{!-- local Javascript --}}
-		<script src="/assets/js/ingredients.js"></script>
-		{{!-- Firebase JS--}}
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-		{{!-- Firebase CSS--}}
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />  
+  <title>In the Fridge</title>
+  {{!-- Local CSS --}}
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  {{!-- Form CSS --}}
+  <link rel="stylesheet" href="assets/css/form.css">
+  {{!-- Tab Image --}}
+  <link rel="shortcut icon" type="image/png" href="assets/img/dish.png" />
+  {{!-- Google Fonts --}}
+  <link
+    href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Courgette|IBM+Plex+Sans|Lobster|Pacifico|Roboto+Condensed"
+    rel="stylesheet">
+  {{!-- jQuery --}}
+  <script src="https://code.jquery.com/jquery.js"></script>
+  {{!-- Firebase JS--}}
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  {{!-- Firebase CSS--}}
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+  {{!-- Modal CSS --}}
+  <link rel="stylesheet" href="assets/css/modal.css">
 
 
-    
+
 </head>
 
 <body>
@@ -30,21 +32,22 @@
   <div class="layout parent">
 
     <div class="the_nav">
-      <div class="nav_name" >
-        <p id="welcome"><a id="welcome" href="/">Welcome</a><p>
+      <div class="nav_name">
+        <p id="welcome"><a id="welcome" href="/">Welcome</a>
+          <p>
       </div>
-<div class="links justify-content-right">
-      <div class="nav_items">
-        <div class="contact">
-          <a href="/">Homepage</a>
+      <div class="links justify-content-right">
+        <div class="nav_items">
+          <div class="contact">
+            <a href="/">Homepage</a>
+          </div>
+          <div class="portfolio">
+            <a href="/form">Search Recipes</a>
+          </div>
+          <div class="about">
+            <div id="signIn">Sign In</div>
+          </div>
         </div>
-        <div class="portfolio">
-          <a href="/form">Search Recipes</a>
-        </div>
-        <div class="about">
-          <a href="index.html" id="signIn">Sign In</a>
-        </div>
-</div>
       </div>
     </div>
 
@@ -56,19 +59,33 @@
 
 
 
-    <div class="content" style="justify-content: center">
-      {{{ body }}}
+  <div class="content" style="justify-content: center">
+    {{{ body }}}
+  </div>
+
+  {{!-- The Modal --}}
+  {{!-- Hidden until "Sign In" is clicked --}}
+  <div id="myModal" class="modal hide">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-title">Sign in</div>
+
+      {{!-- Firebase Authentication sign in options --}}
+      <div class="modal-options">
+        <div id="firebaseui-auth-container"></div>
+      </div>
+
     </div>
+  </div>
 
 
-
-
-{{!-- firebase --}}
-<script src="https://www.gstatic.com/firebasejs/5.11.0/firebase.js"></script>
-{{!-- authentication.js --}}
-<script src="assets/js/authentication.js"></script>
-{{!-- doesUserExist.js --}}
-<script src="assets/js/doesUserExist.js"></script>
+  {{!-- firebase --}}
+  <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase.js"></script>
+  {{!-- authentication.js --}}
+  <script src="assets/js/authentication.js"></script>
+  {{!-- doesUserExist.js --}}
+  <script src="assets/js/doesUserExist.js"></script>
 
 </body>
 
