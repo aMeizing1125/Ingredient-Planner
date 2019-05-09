@@ -19,6 +19,18 @@ h1 {
 	text-align: center;
 }
 
+h2 {
+	margin: auto;
+	text-align: center;
+	margin-top: 25px;
+}
+
+h3 {
+	margin: auto;
+	text-align: center;
+	margin-top: 25px;
+}
+
 .links {
 	margin: auto;
 	float: right;
@@ -39,7 +51,6 @@ h1 {
 }
 
 .nav_name{
-
 	display: block;
 	float: top;
 	top: 0;
@@ -110,6 +121,19 @@ a {
 	padding-right: 20px;
 }
 
+.header {
+	margin-bottom: 25px;
+}
+
+.discriptionBox {
+	outline-style: solid;
+	outline-color: rgb(44, 83, 44);
+	width: 70%;
+	margin: auto;
+	justify-content: center;
+	padding: 20px;
+}
+
 /* .contact{
 	text-decoration: none;
 	grid-column-start: contact;
@@ -159,6 +183,13 @@ a {
 	font-family: 'IBM Plex Sans', sans-serif;
 }
 
+#itemInput {
+	margin: auto;
+	padding: 5px;
+	align-items: center;
+	width: 50%;
+}
+
 @media screen and (max-width: 1050px) {
 	#welcome{
 		width: 100%;
@@ -190,8 +221,9 @@ a {
 @media only screen and (max-width: 750px) {
 	/* phones */
 	.the_nav{
-		display: grid;
-		grid-template-rows: [name_row] 50px [items_row] 50px;
-		grid-template-columns: [nav_center_test] auto;
+		display: block;
+		/* grid-template-rows: [name_row] 50px [items_row] 50px;
+		grid-template-columns: [nav_center_test] auto; */
+
 	}
 }
