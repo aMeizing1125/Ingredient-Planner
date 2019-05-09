@@ -57,7 +57,9 @@ function validateUser() {
         //Create dropdown menu for user
         updateUi.createDropDown(thisUser);
     }
-
+    //else 
+    // Simulate an HTTP redirect:
+    // window.location.replace("/");
 
 }
 
