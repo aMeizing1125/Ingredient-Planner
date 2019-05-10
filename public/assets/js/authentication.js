@@ -52,46 +52,46 @@ var uiConfig = {
 }
 
 var updateUi = {
-  removeSignin: function () {
+  removeSignin: function(){
     document.getElementById('loader').style.display = 'none';
     document.getElementById('firebaseui-auth-container').style.display = 'none';
 
   },
   //Creates a dropdown menu for logged in user
-  createDropDown: function (thisUser) {
+  createDropDown: function(thisUser){
     $(".about").empty();
 
     //Dropdown menu
     newDropDown = $("<select>").addClass("userDropDown")
-      .attr("onchange", "updateUi.dropDownOptions(this.value)")
+    .attr("onchange", "updateUi.dropDownOptions(this.value)")
 
     //This will let us set the default option to the user's name
     userName = $("<option>").text(thisUser.displayName)
-      .attr("disabled", "true")
-      .attr("selected", "true")
-      .attr("hidden", "true")
-      .addClass("userName");
+    .attr("disabled", "true")
+    .attr("selected", "true")
+    .attr("hidden", "true")
+    .addClass("userName");
 
     signOut = $("<option>").text("Sign Out")
-      .attr("id", "signOut")
-      .attr("value", "signOut");
+    .attr("id", "signOut")
+    .attr("value", "signOut");
     settings = $("<option>").text("Settings")
-      .attr("value", "settings");
+    .attr("value", "settings");
 
     newDropDown.append(userName, signOut, settings);
 
     $(".about").append(newDropDown);
   },
-  dropDownOptions(value) {
+  dropDownOptions(value){
     console.log(value);
 
     //If the user attempts to sign out
-    if (value === "signOut") {
+    if(value === "signOut"){
 
       //Clears indexedDb
-      firebase.auth().signOut().then(function () {
+      firebase.auth().signOut().then(function() {
         console.log('Signed Out');
-      }, function (error) {
+      }, function(error) {
         console.error('Sign Out Error', error);
       });
 
@@ -107,10 +107,10 @@ var updateUi = {
 
 ui.start('#firebaseui-auth-container', uiConfig);
 
-function validateUser() {
+function validateUser(){
   var userAccount = JSON.parse(localStorage.getItem("firebaseui::rememberedAccounts"));
 
-  if (userAccount) {
+  if(userAccount){
     //Stores the object of the current user
     thisUser = userAccount[0];
 
@@ -122,8 +122,8 @@ function validateUser() {
   }
 
   //If the user does not exist
-  else {
-    $("#signIn").on("click", function () {
+  else{
+    $("#signIn").on("click", function(){
       $(".hide").toggleClass("hide");
     })
 
@@ -147,7 +147,7 @@ validateUser();
 //     .then(function (gmailResult) {
 //       console.log("Successful Google Account Link");
 //       console.log(gmailResult);
-
+      
 //     }).catch(function (err) {
 //       console.log(err);
 //       console.log("Failed to link Google Account or Login");
