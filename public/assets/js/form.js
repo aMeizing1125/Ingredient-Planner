@@ -5,9 +5,9 @@ console.log("inside form.js");
 
 //------------------------------------------------------------------------------------
 
-$("#submitButton").on("click", function(event){
+$("#submitButton").on("click", function (event) {
     event.preventDefault();
-
+    //add a required to #itemInput if (!('#itemInput))  
     userInput = $("#itemInput").val();
 
     thisIngredient = $("<div>").addClass("ingredient");
@@ -21,29 +21,30 @@ $("#submitButton").on("click", function(event){
     $("#itemInput").val("");
 
     allowDelete();
+
 })
 
-function allowDelete(){
-    $(".deleteIngredient").on("click", function(){
+function allowDelete() {
+    $(".deleteIngredient").on("click", function () {
         console.log("delete button");
-        
+
         thisParent = $(this).parent();
 
         thisParent.remove();
     });
 };
 
-$("#search").on("click", function(){
+$("#search").on("click", function () {
     searchRecipes();
 })
 
-function searchRecipes(){
+function searchRecipes() {
     console.log("searching for recipes")
 
     ingredientsObject = {};
     allIngredients = [];
 
-    $(".ingredientName").each(function(index){
+    $(".ingredientName").each(function (index) {
         thisIngredient = $(this);
         allIngredients.push(thisIngredient.text());
     });
@@ -55,19 +56,19 @@ function searchRecipes(){
     callApi(ingredientsObject);
 };
 
-function callApi(ing){
-    $.post("/submit", ing, function(data){
-        if(data){
+function callApi(ing) {
+    $.post("/submit", ing, function (data) {
+        if (data) {
             appendResults(data);
         }
     })
 }
 
-function appendResults(allRecipes){
+function appendResults(allRecipes) {
     // console.log(allRecipes);
     $("#results").empty();
 
-    allRecipes.forEach(function(thisRecipe){
+    allRecipes.forEach(function (thisRecipe) {
         console.log(thisRecipe);
 
         recipeDiv = $("<div>").addClass("recipe");
@@ -81,14 +82,14 @@ function appendResults(allRecipes){
 
         //Recipe details
         details = $("<div>").addClass("recipeDetails")
-        
+
         moreDetails = $("<button>").addClass("moreDetails").text("More Details");
 
         saveRecipe = $("<button>")
-        .addClass("saveRecipe")
-        .text("Save Recipe")
-        .attr("recipe-id", thisRecipe.id);
-        
+            .addClass("saveRecipe")
+            .text("Save Recipe")
+            .attr("recipe-id", thisRecipe.id);
+
         details.append(moreDetails, saveRecipe);
 
         recipeContainer.append(image, details);
@@ -102,18 +103,18 @@ function appendResults(allRecipes){
     saveRecipes();
 }
 
-function allowMoreDetails(){
-    $(".moreDetails").on("click", function(){
+function allowMoreDetails() {
+    $(".moreDetails").on("click", function () {
         console.log("more details");
-        
+
         thisButton = $(this).parent().parent().parent();
-    
+
         thisButton.toggleClass("expand");
     })
 }
 
-function saveRecipes(){
-    $(".saveRecipe").on("click", function(){
+function saveRecipes() {
+    $(".saveRecipe").on("click", function () {
         var recipeId;
 
         thisButton = $(this);
@@ -133,21 +134,21 @@ function saveRecipes(){
 
                 console.log(savedRecipe);
 
-                $.post("/saveRecipe", savedRecipe, function(data){
-                    if(data){
+                $.post("/saveRecipe", savedRecipe, function (data) {
+                    if (data) {
                         console.log("recipe has been saved");
                     }
-                    else{
+                    else {
                         console.log("error");
                     }
                 })
-            } 
-            
+            }
+
             else {
                 console.log("user is not logged in");
             }
-        });     
-        
+        });
+
 
 
 

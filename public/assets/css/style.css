@@ -75,7 +75,7 @@ h3 {
 
 }
 
-#welcome {
+.welcome {
 	font-size: 75px;
 	padding: 0;
 	color: gold;
@@ -189,7 +189,7 @@ a {
 }
 
 @media screen and (max-width: 1050px) {
-	#welcome{
+	.welcome{
 		width: 100%;
 		position: fixed;
 	}
