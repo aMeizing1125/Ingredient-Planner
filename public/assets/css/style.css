@@ -194,6 +194,10 @@ a {
 
 /* Navigation Responsive */
 @media only screen and (max-width: 950px) {
+	body {
+		background-image: url("../img/backgroundVerticle.jpg");
+
+	}
 
 	.welcome,
 	.nav_nam {
@@ -201,11 +205,14 @@ a {
 	}
 
 	/* hamburger nav */
+	body div .the_nav {
+		list-style-type: none;
+	}
 
 	.the_nav {
 		list-style-type: none;
 		overflow: hidden;
-		background-color: #333;
+		background-color: rgb(187, 20, 20);
 		position: relative;
 		/* overflow: hidden;
 		grid-column-start: blank_left;
