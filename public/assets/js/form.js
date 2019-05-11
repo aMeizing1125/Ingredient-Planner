@@ -36,7 +36,9 @@ $("#submitButton").on("click", function(event){
     event.preventDefault();
 
     userInput = $("#itemInput").val();
-
+    if (!userInput) {
+        return;
+    }
     thisIngredient = $("<div>").addClass("ingredient");
     thisName = $("<div>").text(userInput).addClass("ingredientName");
     thisRemove = $("<button>").text("X").addClass("deleteIngredient");
@@ -46,6 +48,8 @@ $("#submitButton").on("click", function(event){
     $("#ingredients").append(thisIngredient);
 
     $("#itemInput").val("");
+
+    allowDelete();
 
 })
 
