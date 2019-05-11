@@ -1,15 +1,12 @@
--- Drops the userReceipes if it exists currently --
-DROP DATABASE IF EXISTS userReceipeDB;
--- Creates database to store user reciepes
-CREATE DATABASE userReceipeDB;
--- Create Database user receipes
-USE DATABASE userReceipeDB;
--- Creates the "userReceipes" database -
-CREATE TABLE userReceipes
-(
-   id INT(11) NOT NULL AUTO_INCREMENT,
-   ingredient VARCHAR(120)
+CREATE DATABASE saved_receipesDB;
+
+USE saved_receipesDB;
+
+CREATE TABLE receipes(
+  id INT NOT NULL AUTO_INCREMENT,
+  uid VARCHAR(120) NOT NULL,
+  receipe_id VARCHAR(120) NOT NULL,
+  PRIMARY KEY(id)
 );
- SELECT * FROM userReceipes;
 
-
+SELECT * FROM receipes;
