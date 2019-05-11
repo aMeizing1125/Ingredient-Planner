@@ -1,18 +1,42 @@
 console.log("inside form.js");
 
 //Global functions--------------------------------------------------------------------
+function allowSave(id){
+    
 
+    console.log(id);
+
+    var uid = JSON.parse(localStorage.getItem('uid'));
+
+    if(uid){
+
+        recipeObject = {};
+        recipeObject.uid = uid;
+        recipeObject.recipeId = id;
+
+        console.log(recipeObject);
+
+        $.post("/saveRecipe", recipeObject, function(data){
+            if(data){
+                console.log(data);
+            }
+            console.log("recipe has been saved");
+        })
+    }
+
+    else{
+        alert("user is not logged in");
+    }     
+        
+}
 
 //------------------------------------------------------------------------------------
 
-$("#submitButton").on("click", function (event) {
+$("#submitButton").on("click", function(event){
     event.preventDefault();
-    
+
     userInput = $("#itemInput").val();
-    //prevents a blank ingredient
-    if (!userInput) {
-        return;
-    }
+
     thisIngredient = $("<div>").addClass("ingredient");
     thisName = $("<div>").text(userInput).addClass("ingredientName");
     thisRemove = $("<button>").text("X").addClass("deleteIngredient");
@@ -23,30 +47,29 @@ $("#submitButton").on("click", function (event) {
 
     $("#itemInput").val("");
 
-    allowDelete();
 })
 
-function allowDelete() {
-    $(".deleteIngredient").on("click", function () {
+function allowDelete(){
+    $(".deleteIngredient").on("click", function(){
         console.log("delete button");
-
+        
         thisParent = $(this).parent();
 
         thisParent.remove();
     });
 };
 
-$("#search").on("click", function () {
+$("#search").on("click", function(){
     searchRecipes();
 })
 
-function searchRecipes() {
+function searchRecipes(){
     console.log("searching for recipes")
 
     ingredientsObject = {};
     allIngredients = [];
 
-    $(".ingredientName").each(function (index) {
+    $(".ingredientName").each(function(index){
         thisIngredient = $(this);
         allIngredients.push(thisIngredient.text());
     });
@@ -55,101 +78,116 @@ function searchRecipes() {
 
     console.log(ingredientsObject);
 
-    callApi(ingredientsObject);
+    getIds(ingredientsObject);
 };
 
-function callApi(ing) {
-    $.post("/submit", ing, function (data) {
-        if (data) {
-            appendResults(data);
+function getIds(ing){
+    $.post("/submit", ing, function(data){
+        if(data){
+            getRecipes(data);
         }
     })
 }
 
-function appendResults(allRecipes) {
-    // console.log(allRecipes);
-    $("#results").empty();
+function getRecipes(idArray){
 
-    allRecipes.forEach(function (thisRecipe) {
-        console.log(thisRecipe);
+    console.log(idArray);
 
-        recipeDiv = $("<div>").addClass("recipe");
+    for(i = 0; i < idArray.length; i++){
+        thisId = idArray[i];
 
-        title = $("<div>").text(thisRecipe.title)
-            .addClass("recipeTitle");
+        idObject = {};
+        idObject.id = thisId
 
-        recipeContainer = $("<div>").addClass("recipeContainer");
-
-        image = $("<img>").attr("src", thisRecipe.image);
-
-        //Recipe details
-        details = $("<div>").addClass("recipeDetails")
-
-        moreDetails = $("<button>").addClass("moreDetails").text("More Details");
-
-        saveRecipe = $("<button>")
-            .addClass("saveRecipe")
-            .text("Save Recipe")
-            .attr("recipe-id", thisRecipe.id);
-
-        details.append(moreDetails, saveRecipe);
-
-        recipeContainer.append(image, details);
-        recipeDiv.append(title, recipeContainer);
-
-        $("#results").append(recipeDiv);
-    })
-
-    allowMoreDetails();
-
-    saveRecipes();
-}
-
-function allowMoreDetails() {
-    $(".moreDetails").on("click", function () {
-        console.log("more details");
-
-        thisButton = $(this).parent().parent().parent();
-
-        thisButton.toggleClass("expand");
-    })
-}
-
-function saveRecipes() {
-    $(".saveRecipe").on("click", function () {
-        var recipeId;
-
-        thisButton = $(this);
-        recipeId = thisButton.attr("recipe-id");
-
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                // User logged in already or has just logged in.
-                uid = user.uid
-
-                console.log(uid);
-
-                savedReceipe = {
-                    uid: uid,
-                    receipeId: recipeId
-                }
-
-                console.log(savedReceipe);
-
-                $.post("/saveReceipe", savedReceipe, function (data) {
-                    if (data) {
-                        console.log("receipe has been saved");
-                    }
-                    else {
-                        console.log("error");
-                    }
-                })
-            }
-
-            else {
-                console.log("user is not logged in");
+        $.post("/api/searchById", idObject, function(data){
+            if(data){
+                console.log(data);
+                formatRecipe(data);
             }
         });
+    }
 
+}
+
+function formatRecipe(recipe){
+    thisRecipeDiv = $("<div>").addClass("savedRecipe").attr("id", recipe.id);
+    //Header-----------------------------------------------
+    header = $("<div>").addClass("recipeHeader");
+
+    headerTitle = $("<div>").text(recipe.title).addClass("recipeTitle");
+
+    header.append(headerTitle);
+
+    body = $("<div>").addClass("recipeBody");
+
+    recipeStats = $("<div>").addClass("recipeStats");
+    diets = $("<div>").addClass("diets");
+    dietsTitle = $("<div>").addClass("dietsTitle").text("Diets:");
+    dietsContent = $("<div>").addClass("dietsContent");
+
+    allDiets = recipe.diets;
+
+    allDiets.forEach(function(thisDiet){
+        dietName = $("<div>").text(thisDiet).addClass("dietName");
+        dietsContent.append(dietName);
     })
+
+    diets.append(dietsTitle, dietsContent);
+
+    recipeImage = $("<img>").attr("src", recipe.image).addClass("recipeImage");
+
+    recipeStats.append(diets, recipeImage);
+
+    recipeInstructions = $("<div>").addClass("recipeInstructions");
+
+    recipeIngredients = $("<div>").addClass("recipeIngredients");
+
+    ingredientsTitle = $("<div>").addClass("ingredientsTitle").text("Ingredients:");
+
+    headerRow = $("<hr>");
+
+    recipeIngredients.append(ingredientsTitle, headerRow);
+
+    allIngredients = recipe.extendedIngredients;
+
+    allIngredients.forEach(function(ingredient){
+        ingredientString = $("<div>").addClass("ingredientName").text("- " + ingredient.originalString);
+        recipeIngredients.append(ingredientString);
+    })
+
+    instructionsDiv = $("<div>").addClass("instructionsDiv");
+    
+    instructionsTitle = $("<div>").addClass("instructionsTitle").text("Recipe Instructions:");
+
+    instructionsHr = $("<hr>");
+
+    //This is where the recipe instructions will go
+    instructionsContent = $("<div>").addClass("instructionsContent");
+
+    allSteps = recipe.analyzedInstructions[0].steps;
+
+    allSteps.forEach(function(step, i){
+        thisStep = $("<div>").addClass("instructionStep").text((i + 1) + ":  " + step.step);
+        thisBreak = $("<br>");
+        instructionsContent.append(thisStep, thisBreak);
+    })
+
+    instructionsDiv.append(instructionsTitle, instructionsHr, instructionsContent);
+
+    recipeInstructions.append(recipeIngredients, instructionsDiv);
+
+    body.append(recipeStats, recipeInstructions);
+
+    footer = $("<div>").addClass("recipeFooter");
+
+    saveRecipe = $("<button>")
+    .addClass("saveRecipe")
+    .text("Save Recipe")
+    .attr("onClick", `allowSave(${recipe.id})`);
+
+    footer.append(saveRecipe);
+
+    thisRecipeDiv.append(header, body, footer);
+
+    $("#results").append(thisRecipeDiv);
 }

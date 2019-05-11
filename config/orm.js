@@ -70,7 +70,16 @@ var orm = {
          }
          callback(result);
       })
-   } 
+   },
+   customDelete: function(queryString){
+      connection.query(queryString, function(err, result){
+         console.log(queryString);
+         if(err){
+            throw err;
+         }
+         console.log("custom query worked");
+      })
+   }
 };
 
 module.exports = orm;

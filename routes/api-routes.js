@@ -12,14 +12,11 @@ function apiRoutes(app){
     
       getRecipes(allIngredients.allIngredients, function(response){
         console.log(response);
-        
+
         res.json(response);
       });
 
-      
-    
-      // console.log(allRecipes);
-  });
+    });
 
   app.get("/api/allReceipes", function(req, res){
     orm.selectAll("receipes", function(data){
@@ -28,15 +25,15 @@ function apiRoutes(app){
   });
 
   //Send uid and receipe id into database
-  app.post("/saveReceipe", function(req, res){
-    thisReceipe = req.body;
+  app.post("/saveRecipe", function(req, res){
+    thisRecipe = req.body;
 
-    console.log(thisReceipe);
+    console.log(thisRecipe);
 
-    thisUid = thisReceipe.uid;
-    thisReceipeId = thisReceipe.receipeId;
+    thisUid = thisRecipe.uid;
+    thisRecipeId = thisRecipe.recipeId;
 
-    orm.customInsert(`INSERT INTO receipes (uid, receipe_id) VALUES ('${thisUid}', '${thisReceipeId}');`);
+    orm.customInsert(`INSERT INTO receipes (uid, receipe_id) VALUES ('${thisUid}', '${thisRecipeId}');`);
   });
 
   //Takes in user id, returns array of recipe id's associated with user id
@@ -71,6 +68,17 @@ function apiRoutes(app){
     })
 
   });
+
+  app.post("/api/deleteRecipe", function(req, res){
+    idObject = req.body;
+
+    recipeId = idObject.recipeId;
+    userId = idObject.uid;
+
+    console.log(idObject);
+
+    orm.customDelete(`DELETE FROM receipes WHERE uid = '${userId}' AND receipe_id = '${recipeId}';`);
+  })
 
 }
 
