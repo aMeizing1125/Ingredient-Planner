@@ -1,8 +1,8 @@
-var getRecipes = require("../public/assets/js/findRecipes");
+var getRecipes = require("./findRecipes");
 
 var orm = require("../config/orm");
 
-var calls = require("../public/assets/js/api/calls");
+var calls = require("./calls");
 
 function apiRoutes(app){
   app.post("/submit", function(req, res){

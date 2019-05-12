@@ -1,7 +1,7 @@
 var unirest = require("unirest");
 
 function createUrl(arr){
-    queryUrl = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=20&ranking=1&ignorePantry=false&ingredients=";
+    queryUrl = process.env.unirestURL + "findByIngredients?number=20&ranking=1&ignorePantry=false&ingredients=";
 
     for(i = 0; i < arr.length; i++){
         thisIngredient = arr[i];
@@ -17,8 +17,8 @@ var getRecipes = function(ingredients, callback){
     thisUrl = createUrl(ingredients);
 
     unirest.get(thisUrl)
-    .header("X-RapidAPI-Host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
-    .header("X-RapidAPI-Key", "d6a9b5bffdmsh9385d0d809f8dbap14182djsnc502b11e028b")
+    .header("X-RapidAPI-Host", process.env.unirestHOST)
+    .header("X-RapidAPI-Key", process.env.unirestKEY)
     .end(function (result) {
         recipeIdArray = [];
         for (i = 0; i < result.body.length; i++){
